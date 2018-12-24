@@ -1,19 +1,13 @@
-import sys
-import requests, json
+import re
 
 
-frase = input('\nSolta a voz, qual é a frase? \n')
+i_email = input('\nVai mostrão, qual é seu e-mail? \n')
 
-try:
-    url = 'http://api.funtranslations.com/translate/morse?text='+frase
-    res = requests.get(url)
-    r_json = json.loads(res.text)
-    if r_json['error'] is not None:
-        print('Mostro deu erro na API de bosta.')
-    else:
-        print(' ')
-        print('Ae mostrão ta ai tua frase em Morse:')
-        print(' ')
-        print(r_json['contents']['translated'])
-except:
-    print('Não da pra abrir essa merda de site porra mostro!!!')
+verificar = re.findall(r'[^@]+@[^@]+\.[^@]+', i_email)
+
+if verificar:
+    print('Mostro email encontrados:')
+    print(' ')
+    print(verificar)
+else:
+    print('Mostro você não digitou um e-mail valido!!!')
